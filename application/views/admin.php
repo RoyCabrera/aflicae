@@ -61,7 +61,7 @@ $totalmes = $totalVentasMes->num_rows();
 	</div>
 
 	<div class="col-md-6">
-        <h3 class="text-center text-uppercase">Ventas Pendientes</h3>
+        <h3 class="text-center text-uppercase">Últimas ventas</h3>
 		<div class="table-responsive ">
 			<table class="table maestra table-bordered">
 				<thead>

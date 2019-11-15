@@ -25,6 +25,19 @@ class Compra_model extends CI_Model {
         return $result;
 	}
 
+	public function selectAll_aflicae() {
+		$sql = "SELECT TCompra.*,MInsumo.Insumo,MAlmacen.Almacen
+				from TCompra
+				inner join MInsumo on MInsumo.ID_Insumo = TCompra.ID_Insumo
+				inner join MAlmacen on MAlmacen.ID_Almacen = TCompra.ID_Almacen";
+		$result = $this->db->query($sql);
+		if(!$result) {
+			return false;
+		}
+        return $result;
+	}
+
+
 	public function selectAllListaCompra(){
 
 		if(desencriptar($_SESSION['ID_Perfil'])==1 || desencriptar($_SESSION['ID_Perfil'])==1){

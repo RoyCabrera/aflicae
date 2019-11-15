@@ -29,7 +29,7 @@ if($ID_Perfil==1 || $ID_Perfil ==2){
 
                         <th class="text-right">Costo</th>
                         <th class="text-right">Stock</th>
-						<th class="text-right">Stock por Almacén propio</th>
+					<!-- 	<th class="text-right">Stock por Almacén propio</th> -->
 						<th class="text-right">Unidad de Medida</th>
                         <th class="text-right">Stock Minimo</th>
 						<th class='w-20'></th>
@@ -68,7 +68,7 @@ if($ID_Perfil==1 || $ID_Perfil ==2){
 							<td ".$danger." id='costo'>S/ ".  $aux['Costo'] ."</td>
 							<td ".$danger." id='stock'>".  $aux['Stock']." ". $aux['Abreviatura'] ."</td>
 
-							<td ".$danger." id='StockPorAlmacen'>".  $stockPorAlmacen ." ". $aux['Abreviatura']." </td>
+							<!--<td ".$danger." id='StockPorAlmacen'>".  $stockPorAlmacen ." ". $aux['Abreviatura']." </td>-->
 
 							<td ".$danger." id='UnidadMedida'>".  $aux['UnidadMedida'] ."</td>
 

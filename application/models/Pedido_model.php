@@ -1146,4 +1146,59 @@ class Pedido_model extends CI_Model
 		$this->db->where('ID_Pedido', $ID_Pedido);
 		return $this->db->update('TCPedido', $data);
 	}
+	public function insertar_venta_aflicae($ID_Insumo,$ID_Almacen,$Cantidad) {
+
+		/*
+		1.- ingresa en TAlmacenInsumo
+		2.- ingresa en Minsumo
+		3.- ingresa en MCompra
+		*/
+		
+	
+		$stock=0;
+
+
+
+		/*-------------------------------------*/
+
+		$sql = "SELECT Stock from MInsumo where ID_Insumo = $ID_Insumo";
+
+			$result = $this->db->query($sql);
+			if(!$result) {
+				$stock=0;
+			}
+			foreach ($result->result() as $row )
+			{
+				$stock=$row->Stock;
+			}
+
+		if( $stock==null){$stock=0;}
+
+				$data = array('Stock'=>$stock - $Cantidad);
+				$this->db->where('ID_Insumo', $ID_Insumo);
+				$this->db->update('MInsumo', $data);
+
+		/*--------------------------------------------------------*/
+
+
+		date_default_timezone_set('America/Lima');
+
+			$now = new DateTime();
+			$data = array(
+				'ID_Insumo' => $ID_Insumo,
+				'ID_Almacen' => $ID_Almacen,
+				'FechaHora'=>  $now->format('Y-m-d H:i:s'),
+				'CodUsuario' => desencriptar($_SESSION['Correo']),
+				'Cantidad'=> $Cantidad
+			);
+		//    print_r($data);
+		//   die;
+
+
+
+
+        $this->db->insert('tventa_aflicae', $data);
+        return $this->db->insert_id();
+
+	}
 }

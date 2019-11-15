@@ -69,7 +69,7 @@
 							
 
 							<li class=' ' id='m_insumo' style='margin-left: 30px;'>
-								<a title='Control de Insumo' href='".base_url('Insumo')." ' >
+								<a title='Control de productos' href='".base_url('Insumo')." ' >
 									<em class='fa fa-lemon-o'></em>
 									<span data-localize='sidebar.nav.Insumo'>Productos</span>
 								</a>
@@ -85,146 +85,37 @@
 				// PEDIDO (SUPERADMIN, ADMIN Y MESERO)
 				if($ID_Perfil==1 || $ID_Perfil==2 ||  $ID_Perfil==3 || $ID_Perfil==9 ||$ID_Perfil==10){
 					echo "<li class='submenu' id='m_pedido'>
-						<a title='Control de Pedidos' href='#' >
+						<a title='' href='".base_url('Pedido/venta_aflicae')." ' >
 							<em class='fa fa-pencil-square-o'></em>
 							<span data-localize='sidebar.nav.Mesa'>Ventas</span>
 						</a>
 					</li>";
 					echo "<li class='submenu' id='m_pedidopendiente'>
-						<a title='Control de Pedidos pendientes' href='#' >
+						<a title='' href='#' >
 							<em class='fas fa-calendar-alt'></em>
 							<span data-localize='sidebar.nav.Mesa'>Historial de ventas</span>
 						</a>
 					</li>";
 
 
-					//PEDIDO DELIVERY SOLO MESERO DE LOCAL 1
-					if(desencriptar($_SESSION['ID_Almacen'])==1 && ($ID_Perfil==1 || $ID_Perfil==2 ||  $ID_Perfil==3||  $ID_Perfil==10)){
-
-						echo "";
-					}
+				
 
 
 				}
-				if($ID_Perfil == 10){
 				
-				}elseif($ID_Perfil==1){
-				
-				}elseif($ID_Perfil==9){
-					
-				}
-			/* 	echo"<li class='caja' >
-				<a href='#caja' title='Caja' data-toggle='collapse'>
-					<em class='fas fa-box'></em>
-					<span data-localize='sidebar.nav.element.Caja'>Caja</span>
-				</a>
-				<ul class='sidebar-nav sidebar-subnav collapse' id='caja' >
-					<li class='sidebar-subnav-header'>Caja</li>
-
-					<li class=' ' id='apertura_caja' style='margin-left: 30px;'>
-						<a title='Apertura de caja' href='".base_url('Caja/show_apertura')."' >
-							<em class='fas fa-box-open'></em>
-							<span data-localize='sidebar.nav.apertura_caja'>Apertura de caja</span>
-						</a>
-					</li>
-
-					<li class=' ' id='cuadre_caja' style='margin-left: 30px;'>
-						<a title='Cuadre de caja' href='".base_url('Caja/show_cierre')." ' >
-							<em class='fas fa-calculator'></em>
-							<span data-localize='sidebar.nav.cuadre_caja'>Cuadre de caja</span>
-						</a>
-					</li>
-
-					<li class=' ' id='cierre_caja' style='margin-left: 30px;'>
-						<a title='Cierre de caja' href='".base_url('Caja/cierre')."' >
-							<em class='fas fa-key'></em>
-							<span data-localize='sidebar.nav.cierre_caja'>Cierre de caja</span>
-						</a>
-					</li>
-
-
-				</ul>
-			</li>"; */
-
-					
-				//COMPRAS Y OTROS MODULOS (SUPERADMIN)
-					if($ID_Perfil==1){
-						echo "
-
-
-					
-
-
-						
-						";
-					}
-					// PLANO DE MESA
 					
 					//MANUAL DE USUARIO
 					if($ID_Perfil==1){
 
 						echo "<li class=' ' id='m_manual'>
-						<a title='Manual de Usuario' href='#' >
+						<a title='Compras' href='".base_url('Compra/compra_aflicae')." '>
 						<em class='fa fa-book'></em>
-						<span data-localize='sidebar.nav.Mesa'>Manual de Usuario</span>
+						<span data-localize='sidebar.nav.Mesa'>Compras</span>
 						</a>
                     </li>";
 
 					}
 
-					//PLANO DEL MESERO
-					$ID_Almacen = desencriptar($_SESSION['ID_Almacen']);
-					if($ID_Perfil==3 || $ID_Perfil==9 || $ID_Perfil == 10){
-						echo "
-						<li id='m_almacenMesero'>
-							<a href='".base_url('Mesa/plano/').$ID_Almacen."' title='Almacen 3'>
-							<em class='fa fa-book'></em>
-							<span data-localize='sidebar.nav.Mesa'>Panel de Mesa</span>
-							</a>
-                    	</li>";
-
-					}
-					//REPARTIDOR
-					if($ID_Perfil == 6){
-
-						echo"<li class='submenu' id='m_pedidoMotorizado'>
-						<a title='Mis Asignados' href='".base_url('Repartidor/motorizado')."' >
-							<em class='fa fa-cube'></em>
-							<span data-localize='sidebar.nav.Mesa'>Mis Pedidos Asignados</span>
-						</a>
-						</li>
-						<li class='submenu' id='m_compra_asigna'>
-							<a title='Mis Asignados' href='".base_url('Compra/MisAsignados')."' >
-								<em class='fa fa-cart-plus'></em>
-								<span data-localize='sidebar.nav.Mesa'>Mis Compras Asignadas</span>
-							</a>
-						</li>";
-
-					}
-					//COMPRAS ASIGNADAS
-					if($ID_Perfil == 8){
-
-						echo "
-						<li class='submenu' id='m_compra_asigna'>
-							<a title='Mis Asignados' href='".base_url('Compra/MisAsignados')."' >
-								<em class='fa fa-cart-plus'></em>
-								<span data-localize='sidebar.nav.Mesa'>Compras Asignadas</span>
-							</a>
-						</li>";
-
-
-					}
-					//CAJA (FAKE)
-					if($ID_Perfil == 9){
-
-						echo "<li class='submenu' id='m_ventasCaja'>
-						<a title='Control de Ventas' href='".base_url('Venta')."' >
-							<em class='fa fa-pencil'></em>
-							<span data-localize='sidebar.nav.Compra'>Ventas Diarias</span>
-						</a>
-					</li>";
-
-					}
 					?>
 
 			</ul>

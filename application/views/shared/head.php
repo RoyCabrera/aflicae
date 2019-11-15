@@ -29,7 +29,7 @@
    <!-- =============== MY STYLE ===============-->
    <link rel="stylesheet" href="<?php echo base_url('assets/css/estilo.css'); ?>" >
 
-	 <link rel="stylesheet" href="<?php echo base_url('assets/css/theme-a.css'); ?>" >
+	 <link rel="stylesheet" href="<?php echo base_url('assets/css/theme-e.css'); ?>" >
 	<!--  <link rel="stylesheet" href="<?php echo base_url('assets/css/theme-'.desencriptar($this->session->userdata('Tema')).'.css'); ?>" > -->
    <link href="<?php echo base_url('assets/vendor/toastr/toastr.min.css');?>" rel="stylesheet" />
    <!-- FONT AWESOME-->

@@ -1,4 +1,4 @@
-<form action="<?php echo base_url('Compra/actualizar_aflicae') ?>" method="POST" id="frm">
+<form action="<?php echo base_url('Pedido/insertar_venta') ?>" method="POST" id="frm">
 
 	<div class="card">
 		<div class="card-body" >
@@ -15,7 +15,7 @@
 					<div class="form-group">
 						<div class='row'>
 							<div class='col-lg-12'>
-								<label>Producto</label>
+								<label>Producto </label>
 								<select class="form-control" name='ID_Insumo' id='ID_Insumo'>
 									<option value=''>-- Seleccione --</option>
 									<?php
@@ -69,9 +69,9 @@
 					</div>
 					<div class="col-lg-6 col-xs-12">
 						<div class='text-right'>
-							<a href='<?php echo  base_url('Compra/compra_aflicae'); ?>' class="btn btn-warning"
-								style="-webkit-appearance: button-bevel;" >Cancelar</a>
-							<button class="btn btn-success" type="submit">Guardar</button>
+							<!-- <a href='<?php echo  base_url('Compra'); ?>' class="btn btn-warning"
+								style="-webkit-appearance: button-bevel;" >Cancelar</a> -->
+							<button class="btn btn-info" type="submit">Registrar venta</button>
 						</div>
 					</div>
 				</div>
@@ -88,9 +88,9 @@
 		var d = document.getElementById("titulomodulo");
 		var ID = "<?php echo  $compra->ID_Compra ?>";
 		if (ID) {
-			d.innerHTML = "<em class='fa fa-cart-plus'></em><span>  Editar Compra </span>";
+			d.innerHTML = "<em class='fa fa-cart-plus'></em><span>  Editar Venta </span>";
 		} else {
-			d.innerHTML = "<em class='fa fa-cart-plus'></em><span>  Nueva Compra</span>";
+			d.innerHTML = "<em class='fa fa-cart-plus'></em><span> Nueva Venta</span>";
 		}
 	});
 	$("#frm").submit(function (event) {

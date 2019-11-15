@@ -20,18 +20,49 @@ class Compra extends CI_Controller {
 	public function index() {
 
 		$data = array();
-		$aux = (object)array(
-			'cien' => 0,
-			'cincuenta' => 0,
-			'veinte' => 0
-			
-		);
-		$data['dinero']=$aux;
+	
 		$data['listaAsignado'] = $this->Compra_model->selectAllListaCompra();
 		$this->template->load('layout','listacompra_table',$data);
 
 	}
 
+	public function compra_aflicae(){
+		$data = array();
+		$data['compra_list'] = $this->Compra_model->selectAll_aflicae();
+		$this->template->load('layout','compra_table',$data);
+	}
+
+	public function nuevo_afliace() {
+		$aux = (object)  array(
+			'ID_Compra' => '',
+			'ID_Insumo' => 0,
+			'ID_Almacen' => 0,
+			'Cantidad' => 1);
+		$data['compra'] = $aux;
+		$data['insumo_list'] = $this->Insumo_model->selectAll();
+		$data['almacen_list'] = $this->Almacen_model->selectAll();
+		$this->template->load('layout','compra_data',$data);
+	}
+
+	public function actualizar_aflicae() {
+		$ID_Compra = desencriptar($this->input->post('ID_Compra'));
+		$ID_Insumo = $this->input->post('ID_Insumo');
+		$ID_Almacen = $this->input->post('ID_Almacen');
+		$Cantidad = $this->input->post('cantidad');
+		if($ID_Compra == ""){
+            $this->session->set_userdata('success', 'La Comptra se registró correctamente');
+            insertarLog("Registró la Compra ".$ID_Compra);
+            $ID_Compra = $this->Compra_model->insertar($ID_Insumo,$ID_Almacen,$Cantidad);
+        }else{
+            $this->session->set_userdata('success', 'La Compra se actualizó correctamente');
+            insertarLog("Actualizó la Compra ".$ID_Compra);
+			$this->Compra_model->actualizar( $ID_Insumo,$ID_Almacen,$Cantidad,$ID_Compra);
+        }
+            redirect('Compra/compra_aflicae');
+	}
+
+
+	
 	public function listaInsumosComprados() {
 
 		$data = array();
@@ -115,6 +146,7 @@ class Compra extends CI_Controller {
 		$this->template->load('layout','compra_data',$data);
 	}
 	
+	
 	public function compra($ID_Compra) {
 
 		$data= array();
@@ -138,19 +170,6 @@ class Compra extends CI_Controller {
 
 		$this->Compra_model->insertarCompraDirecta($ID_Proveedor,$Producto,$Cantidad,$Precio);
 
-
-/* 
-		if($ID_Compra == ""){
-            $this->session->set_userdata('success', 'La Compra se registró correctamente');
-            insertarLog("Registró la Compra ".$ID_Compra);
-            $ID_Compra = $this->Compra_model->insertar($ID_Insumo,$ID_Almacen,$Cantidad);
-        }else{
-
-            $this->session->set_userdata('success', 'se actualizó');
-            insertarLog("Actualizó la Compra ".$ID_Compra);
-			$this->Compra_model->actualizar( $ID_Insumo,$ID_Almacen,$Cantidad,$ID_Compra);
-
-        } */
 
             redirect('Compra/compraDirecta');
 	}

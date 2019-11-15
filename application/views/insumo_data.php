@@ -67,7 +67,7 @@
 						<div class="row pt-4">
 
 						<div class='col-lg-8'>
-							<label>Familia Insumo</label>
+							<label>Familia producto</label>
                             <select class="form-control" <?= $mostrar ?> required name='ID_Familia' id='ID_Familia'>
 								<option value=''>-- Seleccione --</option>
 								<?php
@@ -102,7 +102,7 @@
 				</div>
             </div>
 
-			<?php
+			<!-- <?php
 			if(isset($insumo_almacen)){
 				foreach($insumo_almacen->result() as $row){
 					echo "<ul class='list-group'>
@@ -114,7 +114,7 @@
 			}
 
 
-			?>
+			?> -->
 
 			</div>
 			<div class="card-footer">

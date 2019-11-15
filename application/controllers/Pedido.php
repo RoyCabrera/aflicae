@@ -12,12 +12,43 @@ class Pedido extends CI_Controller
 		$this->load->model('Mesa_model');
 		$this->load->model('Menu_model');
 		$this->load->model('Almacen_model');
+		$this->load->model('Insumo_model');
 		/*
 		 */
 		// estas funciones validadn si la sesion existe
 		// si se ocula se trabajara con deliveyry para no causar problema
 		sessionExist();
         validaToken();
+	}
+	public function venta_aflicae()
+	{
+		$aux = (object)  array(
+			'ID_Compra' => '',
+			'ID_Insumo' => 0,
+			'ID_Almacen' => 0,
+			'Cantidad' => 1);
+		$data['compra'] = $aux;
+		$data['insumo_list'] = $this->Insumo_model->selectAll();
+		$data['almacen_list'] = $this->Almacen_model->selectAll();
+		$this->template->load('layout','venta_aflicae_data',$data);
+	}
+
+	public function insertar_venta() {
+		
+		$ID_Compra = desencriptar($this->input->post('ID_Compra'));
+		$ID_Insumo = $this->input->post('ID_Insumo');
+		$ID_Almacen = $this->input->post('ID_Almacen');
+		$Cantidad = $this->input->post('cantidad');
+		if($ID_Compra == ""){
+            $this->session->set_userdata('success', 'La Comptra se registró correctamente');
+            insertarLog("Registró la Compra ".$ID_Compra);
+            $ID_Compra = $this->Pedido_model->insertar_venta_aflicae($ID_Insumo,$ID_Almacen,$Cantidad);
+        }else{
+            $this->session->set_userdata('success', 'La Compra se actualizó correctamente');
+            insertarLog("Actualizó la Compra ".$ID_Compra);
+			$this->Compra_model->actualizar( $ID_Insumo,$ID_Almacen,$Cantidad,$ID_Compra);
+        }
+		redirect('Pedido/venta_aflicae', 'refresh');
 	}
 
 	public function index($filtro = ""){
